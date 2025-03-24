@@ -9,7 +9,7 @@ namespace Voided.Authentication.Models
 
         private const string BaseUrl = "https://voided.to/auth.php";
 
-        private const string Salt = "YOUR-SALT-HERE";
+        private const string Salt = "5939e31c-c460-41a2-92e4-da21f1e3ca93";
 
         /// <summary>
         /// Autheticates a user with a given key, provider and required usergroup.
