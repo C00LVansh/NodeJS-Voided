@@ -49,8 +49,8 @@ AuthResponse {
 ```js
 const Usergroup = {
   Contributor: 8,
-  Respected: 1,
-  Veteran: 2,
+  Respected: 9,
+  Veteran: 10,
   VIP: 11,
   Exclusive: 12,
   Cosmo: 13
