@@ -1,73 +1,88 @@
-# Voided Authentication Module
 
-A lightweight Node.js module to authenticate users via the Voided API with group-level access control.
 
-## 📦 Installation
+# 🔐 Voided Authentication System
 
-```bash
-npm install axios
-```
+A community-driven implementation of the [Voided.to](https://voided.to) user authentication logic — supporting multiple languages and environments. Authenticate users using their API key, validate usergroups, and manage access control with ease.
 
-*(This module assumes `axios` is already installed.)*
+> 💡 This repository contains implementations in **C#**, **Node.js**, and potentially more — contributed and maintained by developers who love to build smarter tooling on top of the Voided platform.
 
-## 📁 Usage
+---
 
-```js
- const { AuthManager, Usergroup } = require('./auth.js');
-(async () => {
-    const manager = new AuthManager();
-  
-    const userKey = 'KEY_HERE';
-    const provider = 'PROVIDER'; 
-    const requiredGroup = Usergroup.Cosmo; 
-  
-    const authResult = await manager.authenticateAsync(userKey, provider, requiredGroup);
-    if(authResult.authenticated) {
-    //your code
-    } 
-  })();
-```
+## 🚀 What is This?
 
-## 🧪 Example Response
+This repo provides reusable logic to authenticate users from Voided.to using their developer API. Each implementation checks:
+- If a user key is valid
+- If the salt is valid (not expired)
+- If the user belongs to a required user group
+- And returns meaningful details back to your app
 
-```js
-AuthResponse {
-  authenticated: true,
-  message: 'Authentication successful! User has been authenticated.',
-  user: User {
-    id: 123,
-    username: 'testuser',
-    usergroup: 11,
-    expiration: 2025-05-01T00:00:00.000Z,
-    salt: 'some_salt'
+---
+
+## 📂 Available Implementations
+
+| Language | Folder / File                  | Description                          |
+|----------|--------------------------------|--------------------------------------|
+| C#       | `Voided.Authentication/`       | Original implementation              |
+| C#       | `Voided.Authentication.Example/` | Sample usage in C#                  |
+| Node.js  | `NodeJS Voided Auth/auth.js`      | Implementation in NodeJS      |
+| Node.js | `NodeJS Voided Auth/index.js`   | Sample usage in NodeJS |
+> Want to contribute in Python, Go, Rust, or another language? PRs are welcome! 💙
+
+---
+
+## 🧪 Sample Response (All Languages)
+
+```json
+{
+  "authenticated": true,
+  "message": "Authentication successful! User has been authenticated.",
+  "user": {
+    "id": 123,
+    "username": "testuser",
+    "usergroup": 11,
+    "expiration": "2025-05-01T00:00:00.000Z",
+    "salt": "some_salt"
   }
 }
 ```
 
-## 👤 User Groups
+---
 
-```js
-const Usergroup = {
-  Contributor: 8,
-  Respected: 1,
-  Veteran: 2,
-  VIP: 11,
-  Exclusive: 12,
-  Cosmo: 13
-};
-```
+## 🎯 Supported User Groups
 
-## 🔐 Security
+These may differ per system, but here’s a common mapping:
 
-- Do **not** hardcode sensitive information like your provider key or salt.
-- Use environment variables:
-  ```js
-  const SALT = process.env.VOIDED_SALT;
-  ```
+| Role        | ID  |
+|-------------|-----|
+| Respected   | 1   |
+| Veteran     | 2   |
+| Contributor | 8   |
+| VIP         | 11  |
+| Exclusive   | 12  |
+| Cosmo       | 13  |
 
-## ⚠️ Notes
+---
 
-- You might need to ask Voided developers for your specific `provider` and `salt`.
-- This library assumes the API response includes fields like `uid`, `username`, `usergroup`, `salt_time`, and `provider_salt`.
+## 🛠️ Developer Notes
+
+- You'll need a `provider` and `salt` from Voided developer.
+- Always use environment variables to store your API keys or salts (`.env`, `process.env`, etc.).
+- Never expose secrets in public repositories!
+
+---
+
+## 🤝 Contributing
+
+Want to port this to another language or framework? Fork it, make your changes, and submit a pull request! See an issue? Open one. Let's make this better together.
+
+---
+
+
+## 👥 Credits
+
+- Original C# Implementation by **@zp8ept**
+- Node.js Port by **@C00LVansh**
+- Voided.to devs 💜
+
 
 
