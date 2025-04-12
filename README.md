@@ -1,16 +1,73 @@
-## Voided.Authentication
+# Voided Authentication Module
 
-## I quickly made this authentication example on how to use the Voided.to authentication system in any of your programs.
+A lightweight Node.js module to authenticate users via the Voided API with group-level access control.
 
-- AOT compilation supported
-- Extremely easy to implement into your programs
-- Lightweight and quite fast.
+## 📦 Installation
 
-## Usage
+```bash
+npm install axios
+```
 
-1. Download this project
-2. Go to your project and import a exising project (csproj)
-3. Add the correct reference and simpely call the AuthManager
-4. If you have any problems you might wanna look at the example
+*(This module assumes `axios` is already installed.)*
 
-Telegram for question: [t.me/zp8ept](https://t.me/zp8ept)
+## 📁 Usage
+
+```js
+ const { AuthManager, Usergroup } = require('./auth.js');
+(async () => {
+    const manager = new AuthManager();
+  
+    const userKey = 'KEY_HERE';
+    const provider = 'PROVIDER'; 
+    const requiredGroup = Usergroup.Cosmo; 
+  
+    const authResult = await manager.authenticateAsync(userKey, provider, requiredGroup);
+    if(authResult.authenticated) {
+    //your code
+    } 
+  })();
+```
+
+## 🧪 Example Response
+
+```js
+AuthResponse {
+  authenticated: true,
+  message: 'Authentication successful! User has been authenticated.',
+  user: User {
+    id: 123,
+    username: 'testuser',
+    usergroup: 11,
+    expiration: 2025-05-01T00:00:00.000Z,
+    salt: 'some_salt'
+  }
+}
+```
+
+## 👤 User Groups
+
+```js
+const Usergroup = {
+  Contributor: 8,
+  Respected: 1,
+  Veteran: 2,
+  VIP: 11,
+  Exclusive: 12,
+  Cosmo: 13
+};
+```
+
+## 🔐 Security
+
+- Do **not** hardcode sensitive information like your provider key or salt.
+- Use environment variables:
+  ```js
+  const SALT = process.env.VOIDED_SALT;
+  ```
+
+## ⚠️ Notes
+
+- You might need to ask Voided developers for your specific `provider` and `salt`.
+- This library assumes the API response includes fields like `uid`, `username`, `usergroup`, `salt_time`, and `provider_salt`.
+
+
