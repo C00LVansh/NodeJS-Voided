@@ -34,16 +34,13 @@ This repo provides reusable logic to authenticate users from Voided.to using the
 
 ```json
 {
-  "authenticated": true,
-  "message": "Authentication successful! User has been authenticated.",
-  "user": {
-    "id": 123,
-    "username": "testuser",
-    "usergroup": 11,
-    "expiration": "2025-05-01T00:00:00.000Z",
-    "salt": "some_salt"
-  }
+  "uid": 123,
+  "username": "username",
+  "usergroup": 13,
+  "provider_salt": "some_salt",
+  "salt_time": 1712956800
 }
+
 ```
 
 ---
