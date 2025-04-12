@@ -51,9 +51,9 @@ These may differ per system, but here’s a common mapping:
 
 | Role        | ID  |
 |-------------|-----|
-| Respected   | 1   |
-| Veteran     | 2   |
 | Contributor | 8   |
+| Respected   | 9   |
+| Veteran     | 10   |
 | VIP         | 11  |
 | Exclusive   | 12  |
 | Cosmo       | 13  |
